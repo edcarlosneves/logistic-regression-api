@@ -1,6 +1,3 @@
-from datetime import datetime
-
-from django.conf import settings
 from joblib import load, dump
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -8,12 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
-DATA_FILES_DIR = f"{settings.BASE_DIR}/files/data-files"
-CLASSIFIERS_DIR = f"{settings.BASE_DIR}/files/classifiers"
-
-
-def get_timenow_str():
-    return datetime.utcnow().strftime("%Y%m%d%H%M%S%f")[:-5]
+from project.commons.constants import CLASSIFIERS_DIR, DATA_FILES_DIR
+from project.commons.utils import get_timenow_str
 
 
 # pylint: disable=attribute-defined-outside-init, too-many-instance-attributes
