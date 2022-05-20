@@ -9,20 +9,20 @@ class TestDataFileModel(TestCase):
             file_path="path/to/file.csv", file_name="file.csv"
         )
 
-        self.assertEquals(data_file.file_path, "path/to/file.csv")
-        self.assertEquals(data_file.file_name, "file.csv")
+        self.assertEqual(data_file.file_path, "path/to/file.csv")
+        self.assertEqual(data_file.file_name, "file.csv")
 
     def test_data_file_without_file_name(self):
         data_file = DataFile.objects.create(file_path="path/to/file.csv")
 
-        self.assertEquals(data_file.file_path, "path/to/file.csv")
-        self.assertEquals(data_file.file_name, None)
+        self.assertEqual(data_file.file_path, "path/to/file.csv")
+        self.assertEqual(data_file.file_name, None)
 
     def test_data_file_without_file_path(self):
         data_file = DataFile.objects.create(file_name="file.csv")
 
-        self.assertEquals(bool(data_file.file_path), False)
-        self.assertEquals(data_file.file_name, "file.csv")
+        self.assertEqual(bool(data_file.file_path), False)
+        self.assertEqual(data_file.file_name, "file.csv")
 
 
 class TestClassifierModel(TestCase):
@@ -39,11 +39,11 @@ class TestClassifierModel(TestCase):
         )
 
     def test_classifier_create_ok(self):
-        self.assertEquals(self.classifier.data_file_name, "file.csv")
-        self.assertEquals(self.classifier.test_size, 0.25)
-        self.assertEquals(self.classifier.data_file, self.data_file)
-        self.assertEquals(self.classifier.classifier_name, "classifier_name")
-        self.assertEquals(self.classifier.accuracy, 85)
+        self.assertEqual(self.classifier.data_file_name, "file.csv")
+        self.assertEqual(self.classifier.test_size, 0.25)
+        self.assertEqual(self.classifier.data_file, self.data_file)
+        self.assertEqual(self.classifier.classifier_name, "classifier_name")
+        self.assertEqual(self.classifier.accuracy, 85)
 
     def test_classifier_data_file_name_greater_than_max_len(self):
         self.classifier.data_file_name = "a" * 300
