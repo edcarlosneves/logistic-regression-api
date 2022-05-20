@@ -3,6 +3,7 @@ from django.db.utils import DataError
 from project.apps.classifiers.models import DataFile, Classifier
 
 
+# pylint: disable=no-member
 class TestDataFileModel(TestCase):
     def test_data_file_create_ok(self):
         data_file = DataFile.objects.create(

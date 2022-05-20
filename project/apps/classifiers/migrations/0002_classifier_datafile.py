@@ -9,33 +9,63 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('classifiers', '0001_initial'),
+        ("classifiers", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='DataFile',
+            name="DataFile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file_path', models.FileField(upload_to='files/data_files')),
-                ('file_name', models.CharField(max_length=60, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("file_path", models.FileField(upload_to="files/data_files")),
+                ("file_name", models.CharField(max_length=60, null=True)),
             ],
             options={
-                'verbose_name_plural': 'Data Files',
+                "verbose_name_plural": "Data Files",
             },
         ),
         migrations.CreateModel(
-            name='Classifier',
+            name="Classifier",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('data_file_name', models.CharField(blank=True, max_length=255, null=True)),
-                ('test_size', models.FloatField(blank=True, null=True)),
-                ('classifier_name', models.CharField(blank=True, max_length=255, null=True)),
-                ('accuracy', models.FloatField(blank=True, null=True)),
-                ('data_file', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='classifiers.datafile')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "data_file_name",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                ("test_size", models.FloatField(blank=True, null=True)),
+                (
+                    "classifier_name",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                ("accuracy", models.FloatField(blank=True, null=True)),
+                (
+                    "data_file",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="classifiers.datafile",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Classifiers',
+                "verbose_name_plural": "Classifiers",
             },
         ),
     ]

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('classifiers', '0002_classifier_datafile'),
+        ("classifiers", "0002_classifier_datafile"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='datafile',
-            name='file_path',
-            field=models.FileField(upload_to='files/data-files'),
+            model_name="datafile",
+            name="file_path",
+            field=models.FileField(upload_to="files/data-files"),
         ),
     ]

@@ -16,3 +16,9 @@ create-super-user:
 
 test:
 	python manage.py test
+
+lint:
+	pylint project/ 
+
+style:
+	black .

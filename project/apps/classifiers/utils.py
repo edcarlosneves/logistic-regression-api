@@ -1,11 +1,10 @@
-from django.conf import settings
-
 from datetime import datetime
+
+from django.conf import settings
 from joblib import load, dump
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
@@ -17,6 +16,7 @@ def get_timenow_str():
     return datetime.utcnow().strftime("%Y%m%d%H%M%S%f")[:-5]
 
 
+# pylint: disable=attribute-defined-outside-init, too-many-instance-attributes
 class PredictResults:
     def __init__(self, classifier_name):
         self.classifier_name = f"{classifier_name}_classifier.joblib"
@@ -40,21 +40,21 @@ class TrainModel:
 
     def prepare_data(self):
         self.dataset = pd.read_csv(f"{DATA_FILES_DIR}/{self.data_file_name}")
-        self.x = self.dataset.iloc[:, :-1].values
-        self.y = self.dataset.iloc[:, -1].values
+        self.x_data = self.dataset.iloc[:, :-1].values
+        self.y_data = self.dataset.iloc[:, -1].values
 
     def split_train_and_test_data(self):
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
-            self.x, self.y, test_size=self.test_size
+        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(
+            self.x_data, self.y_data, test_size=self.test_size
         )
 
     def fit_transform_data(self):
-        self.X_train = self.scaler.fit_transform(self.X_train)
-        self.X_test = self.scaler.fit_transform(self.X_test)
+        self.x_train = self.scaler.fit_transform(self.x_train)
+        self.x_test = self.scaler.fit_transform(self.x_test)
 
     def make_predictions(self):
-        self.classifier.fit(self.X_train, self.y_train)
-        self.y_pred = self.classifier.predict(self.X_test)
+        self.classifier.fit(self.x_train, self.y_train)
+        self.y_pred = self.classifier.predict(self.x_test)
 
     def calculate_accuracy(self):
         self.classifier_accuracy = accuracy_score(self.y_test, self.y_pred) * 100

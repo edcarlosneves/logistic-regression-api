@@ -1,10 +1,4 @@
-from ipaddress import ip_address
-from re import I
-import pandas as pd
-from decimal import Decimal
-from datetime import datetime
-
-from rest_framework import status, viewsets, generics
+from rest_framework import status, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -19,7 +13,7 @@ from project.apps.classifiers.utils import (
     get_timenow_str,
 )
 
-
+# pylint: disable=too-many-ancestors, no-member
 class ClassifierViewSet(viewsets.ModelViewSet):
     serializer_class = ClassifierSerializer
     queryset = Classifier.objects.all()
@@ -47,7 +41,8 @@ class ClassifierViewSet(viewsets.ModelViewSet):
 
 
 class PredcitResultsApiView(APIView):
-    def post(self, request, format=None):
+    # pylint: disable=no-self-use
+    def post(self, request):
         classifier_name = request.data["classifier_name"]
         input_data = request.data["input_data"]
         predictor = PredictResults(classifier_name=classifier_name)
