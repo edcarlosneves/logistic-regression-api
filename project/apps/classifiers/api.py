@@ -2,16 +2,17 @@ from rest_framework import status, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from project.apps.classifiers.models import DataFile, Classifier
+from project.apps.classifiers.models import DataFile, Classifier, DataFileHeader
 from project.apps.classifiers.serializers import (
+    DataFileHeaderSerializer,
     DataFileSerializer,
     ClassifierSerializer,
 )
 from project.apps.classifiers.utils import (
     PredictResults,
     TrainModel,
-    get_timenow_str,
 )
+from project.commons.utils import get_timenow_str, get_headers_from_csv
 
 # pylint: disable=too-many-ancestors, no-member
 class ClassifierViewSet(viewsets.ModelViewSet):
@@ -68,4 +69,15 @@ class DataFileViewSet(viewsets.ModelViewSet):
         new_data_file_name = f"{data_file_name_without_extension}_{timestr}.csv"
         self.request.data["file_path"].name = new_data_file_name
         saved_serializer = serializer.save(file_name=new_data_file_name)
+        data_file_headers = get_headers_from_csv(new_data_file_name)
+        for data_file_header in data_file_headers:
+            DataFileHeader.objects.create(
+                data_file=saved_serializer, header_name=data_file_header
+            )
+
         return saved_serializer
+
+
+class DatafileHeaderViewSet(viewsets.ModelViewSet):
+    serializer_class = DataFileHeaderSerializer
+    queryset = DataFileHeader.objects.all()

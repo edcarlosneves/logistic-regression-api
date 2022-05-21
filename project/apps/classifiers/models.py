@@ -12,6 +12,19 @@ class DataFile(models.Model):
         return f"{self.file_name}"
 
 
+class DataFileHeader(models.Model):
+    data_file = models.ForeignKey(
+        DataFile, on_delete=models.CASCADE, null=True, blank=True
+    )
+    header_name = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Data File Headers"
+
+    def __str__(self):
+        return f"{self.data_file} -> {self.header_name}"
+
+
 class Classifier(models.Model):
     data_file_name = models.CharField(max_length=255, null=True, blank=True)
     test_size = models.FloatField(null=True, blank=True)
