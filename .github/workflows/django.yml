@@ -13,6 +13,9 @@ jobs:
       postgres:
         image: postgres:11
         env:
+          DB_ENGINE: django.db.backends.postgresql
+          DB_HOST: 0.0.0.0
+          DB_PORT: 5432
           POSTGRES_USER: database_user
           POSTGRES_PASSWORD: database_password
           POSTGRES_DB: database_db
@@ -21,7 +24,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.8, 3.9, 3.10]
+        python-version: [3.9]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -34,5 +37,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements/base.txt
       - name: Run Tests
+        env:
+          DB_ENGINE: django.db.backends.postgresql
+          DB_HOST: 0.0.0.0
+          DB_PORT: 5432
+          POSTGRES_USER: database_user
+          POSTGRES_PASSWORD: database_password
+          POSTGRES_DB: database_db
         run: |
           python manage.py test
