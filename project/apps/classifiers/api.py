@@ -74,7 +74,6 @@ class DataFileViewSet(viewsets.ModelViewSet):
             DataFileHeader.objects.create(
                 data_file=saved_serializer, header_name=data_file_header
             )
-
         return saved_serializer
 
 

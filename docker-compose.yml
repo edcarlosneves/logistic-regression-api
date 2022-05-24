@@ -1,6 +1,16 @@
 version: '3.7'
 
 services:
+  logistic_regression_api:
+    build:
+      context: .
+    container_name: logistic_regression_api
+    network_mode: host
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - logistic_regression_api_db
   logistic_regression_api_db:
     image: postgres:alpine
     container_name: logistic_regression_api_db
