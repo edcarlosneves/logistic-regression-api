@@ -6,19 +6,24 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  DB_ENGINE: django.db.backends.postgresql
+  DB_HOST: 0.0.0.0
+  DB_PORT: 5432
+  POSTGRES_USER: database_user
+  POSTGRES_PASSWORD: database_password
+  POSTGRES_DB: database_db
+
 jobs:
   tests:
     runs-on: ubuntu-latest
-    env:
-      DB_ENGINE: django.db.backends.postgresql
-      DB_HOST: 0.0.0.0
-      DB_PORT: 5432
-      POSTGRES_USER: database_user
-      POSTGRES_PASSWORD: database_password
-      POSTGRES_DB: database_db
     services:
       postgres:
         image: postgres:11
+        env:
+          POSTGRES_USER: $POSTGRES_USER
+          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+          POSTGRES_DB: $POSTGRES_DB
         ports: ['5432:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     strategy:
@@ -37,5 +42,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements/base.txt
       - name: Run Tests
+        env:
+          DB_ENGINE: $DB_ENGINE
+          DB_HOST: $DB_HOST
+          DB_PORT: $DB_PORT
+          POSTGRES_USER: $POSTGRES_USER
+          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+          POSTGRES_DB: $POSTGRES_DB
         run: |
           python manage.py test
