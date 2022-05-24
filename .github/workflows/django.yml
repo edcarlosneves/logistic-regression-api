@@ -20,12 +20,12 @@ jobs:
     services:
       postgres:
         image: postgres:11
-        env:
-          POSTGRES_USER: $POSTGRES_USER
-          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-          POSTGRES_DB: $POSTGRES_DB
+        # env:
+        #   POSTGRES_USER: $POSTGRES_USER
+        #   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+        #   POSTGRES_DB: $POSTGRES_DB
         ports: ['5432:5432']
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     strategy:
       max-parallel: 4
       matrix:
@@ -42,12 +42,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements/base.txt
       - name: Run Tests
-        env:
-          DB_ENGINE: $DB_ENGINE
-          DB_HOST: $DB_HOST
-          DB_PORT: $DB_PORT
-          POSTGRES_USER: $POSTGRES_USER
-          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-          POSTGRES_DB: $POSTGRES_DB
+        # env:
+        #   DB_ENGINE: $DB_ENGINE
+        #   DB_HOST: $DB_HOST
+        #   DB_PORT: $DB_PORT
+        #   POSTGRES_USER: $POSTGRES_USER
+        #   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+        #   POSTGRES_DB: $POSTGRES_DB
         run: |
           python manage.py test
