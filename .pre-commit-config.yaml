@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/ambv/black
+    rev: stable
+    hooks:
+      - id: black
+        language_version: python3.9
+        stages: [commit]
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        stages: [commit]
+        args: [
+            '-rn', # Only display messages
+            '-sn', # Don't display the score
+          ]
