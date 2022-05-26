@@ -56,6 +56,7 @@ class Prediction(models.Model):
 class PredictionInputData(models.Model):
     input_data = models.FloatField()
     input_label = models.CharField(max_length=255)
+    data_file_header = models.ForeignKey(DataFileHeader, on_delete=models.CASCADE)
     prediction = models.ForeignKey(
         Prediction,
         on_delete=models.CASCADE,

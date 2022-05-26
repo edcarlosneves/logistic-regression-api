@@ -19,14 +19,6 @@ services:
       - logistic_regression_api_db_data:/var/lib/postgresql/data/
     env_file:
       - .env
-  logistic_regression_api_pgadmin:
-    image: dpage/pgadmin4
-    container_name: logistic_regression_api_pgadmin
-    network_mode: host
-    depends_on:
-      - logistic_regression_api_db
-    env_file:
-      - .env
   
 volumes:
   logistic_regression_api_db_data:
