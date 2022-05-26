@@ -1,5 +1,11 @@
 from django.contrib import admin
-from project.apps.classifiers.models import DataFile, Classifier, DataFileHeader
+from project.apps.classifiers.models import (
+    DataFile,
+    Classifier,
+    DataFileHeader,
+    Prediction,
+    PredictionInputData,
+)
 
 
 @admin.register(DataFile)
@@ -14,4 +20,14 @@ class ClassifierAdmin(admin.ModelAdmin):
 
 @admin.register(DataFileHeader)
 class DataFileHeaderAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Prediction)
+class PredctionAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PredictionInputData)
+class PredctionInputDataAdmin(admin.ModelAdmin):
     pass

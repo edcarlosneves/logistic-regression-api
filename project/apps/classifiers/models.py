@@ -39,3 +39,28 @@ class Classifier(models.Model):
 
     def __str__(self):
         return f"name -> {self.classifier_name} | acc -> {self.accuracy}"
+
+
+class Prediction(models.Model):
+    classifier = models.ForeignKey(Classifier, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Predictions"
+
+    def __str__(self):
+        return f"Classifier used: {str(self.classifier)}"
+
+
+class PredictionInputData(models.Model):
+    input_data = models.FloatField()
+    input_label = models.CharField(max_length=255)
+    prediction = models.ForeignKey(
+        Prediction,
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        verbose_name_plural = "Predctions Input Data"
+
+    def __str__(self):
+        return f"{self.input_label}: {self.input_data}"
