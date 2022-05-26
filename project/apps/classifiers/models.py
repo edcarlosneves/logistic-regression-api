@@ -6,6 +6,7 @@ class DataFile(models.Model):
     file_name = models.CharField(max_length=60, null=True)
 
     class Meta:
+        db_table = "classifiers_data_file"
         verbose_name_plural = "Data Files"
 
     def __str__(self):
@@ -19,6 +20,7 @@ class DataFileHeader(models.Model):
     header_name = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
+        db_table = "classifiers_data_file_header"
         verbose_name_plural = "Data File Headers"
 
     def __str__(self):
@@ -60,6 +62,7 @@ class PredictionInputData(models.Model):
     )
 
     class Meta:
+        db_table = "classifiers_prediction_input_data"
         verbose_name_plural = "Predctions Input Data"
 
     def __str__(self):
