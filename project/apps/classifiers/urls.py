@@ -5,12 +5,14 @@ from project.apps.classifiers.api import (
     PredcitResultsApiView,
     DataFileViewSet,
     DatafileHeaderViewSet,
+    PredictionViewSet,
 )
 
 router = routers.DefaultRouter()
 router.register("data-csv", DataFileViewSet, basename="DataFile")
 router.register("data-csv-header", DatafileHeaderViewSet, basename="DatafileHeader")
 router.register("classifier", ClassifierViewSet, basename="Classifier")
+router.register("prediction", PredictionViewSet, basename="Prediction")
 
 urlpatterns = [
     path("", include(router.urls)),

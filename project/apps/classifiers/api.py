@@ -2,11 +2,18 @@ from rest_framework import status, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from project.apps.classifiers.models import DataFile, Classifier, DataFileHeader
+# pylint: disable=duplicate-code
+from project.apps.classifiers.models import (
+    DataFile,
+    Classifier,
+    DataFileHeader,
+    Prediction,
+)
 from project.apps.classifiers.serializers import (
     DataFileHeaderSerializer,
     DataFileSerializer,
     ClassifierSerializer,
+    PredictionSerializer,
 )
 from project.apps.classifiers.utils import (
     PredictResults,
@@ -80,3 +87,8 @@ class DataFileViewSet(viewsets.ModelViewSet):
 class DatafileHeaderViewSet(viewsets.ModelViewSet):
     serializer_class = DataFileHeaderSerializer
     queryset = DataFileHeader.objects.all()
+
+
+class PredictionViewSet(viewsets.ModelViewSet):
+    serializer_class = PredictionSerializer
+    queryset = Prediction.objects.all()

@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from project.apps.classifiers.models import DataFile, Classifier, DataFileHeader
+# pylint: disable=duplicate-code
+from project.apps.classifiers.models import (
+    DataFile,
+    Classifier,
+    Prediction,
+    DataFileHeader,
+)
 
 
 class DataFileSerializer(serializers.ModelSerializer):
@@ -18,4 +24,10 @@ class ClassifierSerializer(serializers.ModelSerializer):
 class DataFileHeaderSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataFileHeader
+        fields = "__all__"
+
+
+class PredictionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prediction
         fields = "__all__"
