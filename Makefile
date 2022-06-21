@@ -8,6 +8,12 @@ docker-compose-up:
 docker-compose-stop:
 	docker-compose stop
 
+docker-compose-build-all:
+	docker-compose up --build --remove-orphans
+
+docker-compose-build-api:
+	docker-compose build logistic_regression_api
+
 runserver:
 	python manage.py runserver
 
