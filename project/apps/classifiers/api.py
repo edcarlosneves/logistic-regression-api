@@ -1,25 +1,23 @@
 from rest_framework import status, viewsets
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 # pylint: disable=duplicate-code
 from project.apps.classifiers.models import (
-    DataFile,
     Classifier,
+    DataFile,
     DataFileHeader,
     Prediction,
 )
 from project.apps.classifiers.serializers import (
+    ClassifierSerializer,
     DataFileHeaderSerializer,
     DataFileSerializer,
-    ClassifierSerializer,
     PredictionSerializer,
 )
-from project.apps.classifiers.utils import (
-    PredictResults,
-    TrainModel,
-)
-from project.commons.utils import get_timenow_str, get_headers_from_csv
+from project.apps.classifiers.utils import PredictResults, TrainModel
+from project.commons.utils import get_headers_from_csv, get_timenow_str
+
 
 # pylint: disable=too-many-ancestors, no-member
 class ClassifierViewSet(viewsets.ModelViewSet):

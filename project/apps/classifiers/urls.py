@@ -1,10 +1,12 @@
 from django.urls import include, path
+
 from rest_framework import routers
+
 from project.apps.classifiers.api import (
     ClassifierViewSet,
-    PredcitResultsApiView,
-    DataFileViewSet,
     DatafileHeaderViewSet,
+    DataFileViewSet,
+    PredcitResultsApiView,
     PredictionViewSet,
 )
 

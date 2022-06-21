@@ -1,6 +1,7 @@
-from django.test import TestCase
 from django.db.utils import DataError
-from project.apps.classifiers.models import DataFile, Classifier
+from django.test import TestCase
+
+from project.apps.classifiers.models import Classifier, DataFile
 
 
 # pylint: disable=no-member

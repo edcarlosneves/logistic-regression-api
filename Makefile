@@ -27,4 +27,5 @@ lint:
 	pylint project/ 
 
 style:
+	isort .
 	black .

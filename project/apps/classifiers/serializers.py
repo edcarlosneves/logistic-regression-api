@@ -2,10 +2,10 @@ from rest_framework import serializers
 
 # pylint: disable=duplicate-code
 from project.apps.classifiers.models import (
-    DataFile,
     Classifier,
-    Prediction,
+    DataFile,
     DataFileHeader,
+    Prediction,
 )
 
 

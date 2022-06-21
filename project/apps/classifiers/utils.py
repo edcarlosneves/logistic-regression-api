@@ -1,9 +1,9 @@
-from joblib import load, dump
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
+from joblib import dump, load
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 from project.commons.constants import CLASSIFIERS_DIR, DATA_FILES_DIR
 from project.commons.utils import get_timenow_str

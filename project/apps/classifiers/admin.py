@@ -1,7 +1,8 @@
 from django.contrib import admin
+
 from project.apps.classifiers.models import (
-    DataFile,
     Classifier,
+    DataFile,
     DataFileHeader,
     Prediction,
     PredictionInputData,
